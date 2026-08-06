@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mercado Fácil | Caixa</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="checkout">
+      <section class="products-panel">
+        <header class="topbar">
+          <div class="brand"><span class="brand-mark">M</span><span>mercado<span>fácil</span></span></div>
+          <div class="cashier-status"><i></i> Caixa 01 <small>• Operador(a): Maria</small></div>
+        </header>
+
+        <div class="scanner-area">
+          <p class="eyebrow">REGISTRO DE PRODUTOS</p>
+          <h1>Olá! Vamos começar a compra.</h1>
+          
+          <div class="filter-group">
+            <label class="search-box" for="product-search">
+              <span>⌕</span>
+              <input id="product-search" type="search" placeholder="Bipe ou pesquise por nome..." autocomplete="off" autofocus />
+              <kbd>Enter</kbd>
+            </label>
+            
+            <div class="category-box">
+              <select id="category-filter">
+                <option value="">Todas as categorias</option>
+              </select>
+            </div>
+          </div>
+
+          <p id="feedback" class="feedback" aria-live="polite">Carregando produtos...</p>
+        </div>
+
+        <div class="products-heading">
+          <div><h2>Produtos disponíveis</h2><p id="product-count">—</p></div>
+          <button id="reload-products" class="text-button">↻ Atualizar</button>
+        </div>
+        
+        <div id="product-grid" class="product-grid" aria-live="polite"></div>
+
+        <!-- Controles de Paginação -->
+        <div id="pagination" class="pagination-controls">
+          <button id="prev-page" class="text-button" disabled>← Anterior</button>
+          <span id="page-info">Página 1 de 1</span>
+          <button id="next-page" class="text-button">Próxima →</button>
+        </div>
+      </section>
+
+      <aside class="cart-panel">
+        <header class="cart-header">
+          <div><p class="eyebrow">COMPRA ATUAL</p><h2>Meu carrinho</h2></div>
+          <span id="item-badge" class="item-badge">0 itens</span>
+        </header>
+
+        <div id="empty-cart" class="empty-cart"><div>🛒</div><h3>Seu carrinho está vazio</h3><p>Adicione produtos para iniciar a venda.</p></div>
+        <ul id="cart-items" class="cart-items"></ul>
+
+        <div class="cart-summary">
+          <div class="summary-line"><span>Subtotal</span><strong id="subtotal">R$ 0,00</strong></div>
+          <div class="summary-line discount"><span>Descontos</span><strong>R$ 0,00</strong></div>
+          <div class="total-line"><span>Total a pagar</span><strong id="total">R$ 0,00</strong></div>
+        </div>
+
+        <button id="finish-sale" class="finish-button" disabled>Finalizar venda <span>→</span></button>
+        <button id="clear-cart" class="clear-button" disabled>Cancelar compra</button>
+      </aside>
+    </main>
+
+    <dialog id="receipt-dialog" class="receipt-dialog">
+      <article id="receipt-content"></article>
+      <form method="dialog"><button class="finish-button">Nova venda <span>→</span></button></form>
+    </dialog>
+    <script src="app.js"></script>
+  </body>
+</html>
