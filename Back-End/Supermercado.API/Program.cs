@@ -11,7 +11,9 @@ using Supermercado.Services.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.WebHost.UseUrls("http://0.0.0.0:5000");
+// O Render define a porta via a variável de ambiente PORT
+var port = Environment.GetEnvironmentVariable("PORT") ?? "10000";
+builder.WebHost.UseUrls($"http://0.0.0.0:{port}");
 
 // 1. Configuração do CORS (Para permitir que o Front-End acesse a API)
 builder.Services.AddCors(options =>
