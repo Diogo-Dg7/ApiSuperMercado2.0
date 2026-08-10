@@ -11,7 +11,7 @@ using Supermercado.Services.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// O Render define a porta via a variável de ambiente PORT
+// Configura a porta dinâmica para o Render
 var port = Environment.GetEnvironmentVariable("PORT") ?? "10000";
 builder.WebHost.UseUrls($"http://0.0.0.0:{port}");
 
@@ -120,5 +120,12 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+// 7. Aplica as migrations automaticamente ao iniciar a aplicação
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    dbContext.Database.Migrate();
+}
 
 app.Run();
