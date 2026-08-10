@@ -100,11 +100,14 @@ var app = builder.Build();
 // 6. Pipeline de Middlewares da Aplicação
 app.UseMiddleware<ErrorHandlingMiddleware>();
 
-if (app.Environment.IsDevelopment())
+// SEMPRE habilitar o Swagger, independente do ambiente
+app.UseSwagger();
+app.UseSwaggerUI(c =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Supermercado API v1");
+    // Para acessar o Swagger na raiz (ex: https://apisupermercado-api.onrender.com/), descomente a linha abaixo:
+    // c.RoutePrefix = "";
+});
 
 app.UseCors("LiberarTudo");
 
@@ -115,4 +118,4 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.Run();
+app.Run(); 
