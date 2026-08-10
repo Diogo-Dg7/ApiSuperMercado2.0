@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Npgsql.EntityFrameworkCore.PostgreSQL;
 using Supermercado.API.Middlewares;
 using Supermercado.Data.Context;
 using Supermercado.Services.Interfaces;
@@ -23,10 +24,10 @@ builder.Services.AddCors(options =>
     });
 });
 
-// 2. Configuração do DbContext (Entity Framework + SQL Server)
+// 2. Configuração do DbContext (Entity Framework + PostgreSQL)
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(connectionString));
+    options.UseNpgsql(connectionString));
 
 // 3. Configuração da Autenticação via JWT
 var secretKey = builder.Configuration["Jwt:SecretKey"] ?? "MinhaChaveUltraSeguraECompridaDe32Caracteres!";
@@ -118,4 +119,4 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.Run(); 
+app.Run();
