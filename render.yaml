@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: apisupermercado-api
+    env: docker
+    rootDir: Back-End
+    plan: free
