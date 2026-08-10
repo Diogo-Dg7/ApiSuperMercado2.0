@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:5241/api";
+const API_URL = "https://apisupermercado-api.onrender.com/api";
 const money = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" });
 let products = [];
 let cart = [];
@@ -110,7 +110,7 @@ async function loadProducts() {
     populateCategories();
     renderProducts(products.filter(matchesSearchAndCategory));
   } catch {
-    setFeedback("Não foi possível conectar à API. Confirme se ela está rodando em http://localhost:5080.", true);
+    setFeedback("Não foi possível conectar à API. Confirme se ela está rodando em https://apisupermercado-api.onrender.com", true);
     document.querySelector("#product-count").textContent = "Indisponível";
   }
 }
